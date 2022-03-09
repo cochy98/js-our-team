@@ -1,0 +1,9 @@
+body{
+    background-color: #f5f5f1;
+}
+
+.card{
+    border: none;
+    border-radius: 0;
+    color: #757473;
+}

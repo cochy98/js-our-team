@@ -52,11 +52,15 @@ const userOut = document.querySelector('#output');
 let output = '';
 
 
+const cardsContainer = document.querySelector('#cards-container');
+
+
 // Stampo su console le informazioni di nome, ruolo e la stringa della foto
 for (let i = 0; i < team.length; i++){
     output = `${team[i].name} -- ${team[i].role} -- ${team[i].image}`;
     console.log(output);
     userOut.innerHTML += `${i + 1}) ${output} <br>`;
+    cardsContainer.innerHTML += createMemberCard(team[i].image, team[i].name, team[i].role);
 }
 
 
@@ -71,4 +75,19 @@ function createNewDivElement (){
     divOutput.classList.add('alert', 'alert-primary', 'fs-4');
     divOutput.id = 'output';
     return divOutput;
+}
+
+function createMemberCard (imgSource, nameMember, roleMember){
+    const memberCard = `
+        <div class="col">
+            <div class="card">
+                <img src="img/${imgSource}" class="card-img-top" alt="...">
+                <div class="card-body text-center">
+                    <h5 class="card-title">${nameMember}</h5>
+                    <p class="card-text">${roleMember}</p>
+                </div>
+            </div>
+        </div> `;
+
+    return memberCard;
 }
