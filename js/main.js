@@ -44,7 +44,31 @@ const team = [
     },
 ];
 
+const myColOut = document.querySelector('.my-col-out');
+myColOut.appendChild(createNewDivElement());
+
+
+const userOut = document.querySelector('#output');
+let output = '';
+
+
 // Stampo su console le informazioni di nome, ruolo e la stringa della foto
 for (let i = 0; i < team.length; i++){
-    console.log(`${team[i].name} -- ${team[i].role} -- ${team[i].image}`);
+    output = `${team[i].name} -- ${team[i].role} -- ${team[i].image}`;
+    console.log(output);
+    userOut.innerHTML += `${i + 1}) ${output} <br>`;
+}
+
+
+
+
+
+
+/*********************************FUNCTIONS*****************************************/
+
+function createNewDivElement (){
+    const divOutput = document.createElement('div');
+    divOutput.classList.add('alert', 'alert-primary', 'fs-4');
+    divOutput.id = 'output';
+    return divOutput;
 }
