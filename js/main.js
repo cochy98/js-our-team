@@ -44,6 +44,8 @@ const team = [
     },
 ];
 
+
+
 const myColOut = document.querySelector('.my-col-out');
 myColOut.appendChild(createNewDivElement());
 
@@ -60,8 +62,25 @@ for (let i = 0; i < team.length; i++){
     output = `${team[i].name} -- ${team[i].role} -- ${team[i].image}`;
     console.log(output);
     userOut.innerHTML += `${i + 1}) ${output} <br>`;
-    cardsContainer.innerHTML += createMemberCard(team[i].image, team[i].name, team[i].role);
+    cardsContainer.innerHTML += createMemberCard(`img/${team[i].image}`, team[i].name, team[i].role);
 }
+
+/* Al click del pulsante del form, aggiungo un nuovo membro al team */
+const formAction = document.getElementById('submit');
+formAction.addEventListener('click', function(){
+    const newMember = [];
+    // Converto un HTML collection in array
+    const inputValue = Array.from(document.getElementsByTagName('input'));
+    // Ciclo su tutti gli elementi dell'array 'inputValue' e prendo solo il valore
+    inputValue.forEach((element, i) => {
+        newMember[i] = element.value;
+        element.value = '';
+    });
+    console.log(newMember);
+    cardsContainer.innerHTML += createMemberCard (newMember[2], newMember[0], newMember[1]);
+});
+
+
 
 
 
@@ -69,6 +88,7 @@ for (let i = 0; i < team.length; i++){
 
 
 /*********************************FUNCTIONS*****************************************/
+
 
 function createNewDivElement (){
     const divOutput = document.createElement('div');
@@ -81,7 +101,7 @@ function createMemberCard (imgSource, nameMember, roleMember){
     const memberCard = `
         <div class="col">
             <div class="card">
-                <img src="img/${imgSource}" class="card-img-top" alt="...">
+                <img src="${imgSource}" class="card-img-top" alt="...">
                 <div class="card-body text-center">
                     <h5 class="card-title">${nameMember}</h5>
                     <p class="card-text">${roleMember}</p>
